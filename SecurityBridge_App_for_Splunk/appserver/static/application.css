@@ -1,0 +1,6 @@
+/* Submit Button Coloring */
+
+ .splunk-header.splunk-view.splunk-header.splunk-view > div[data-view="views/shared/appbar/Master"] {
+     background-color: #CC2A36;
+ }
+ 
