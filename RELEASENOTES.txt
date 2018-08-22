@@ -1,0 +1,14 @@
+1.0.0beta - draft version 
+1.0.1beta - added dashboards
+1.0.2beta - Adding Setup Page
+1.0.3beta - Rearrangement of Dashboards and Graphs
+1.0.4beta - Added Company Branding 
+1.0.5beta - Final Update, Beautification and Packaging
+1.0.5        -  Release in Production dtd 9 Jul 2018
+1.0.6beta - Update to CIM 4.11 
+1.0.6        -  Release in Production dtd 19 Jul 2018
+1.0.7beta - Resolving issues with Colour on NAV bar for 7.1.X
+1.0.8beta - Making App package compatible with Splunk 7.1.X
+1.0.8        -  Release in Production dtd 27 Jul 2018 
+1.1.1beta - Adding Support for SB 2.40 and CEF v25
+1.1.1        - Release in Production dtd 22 Aug 2018
