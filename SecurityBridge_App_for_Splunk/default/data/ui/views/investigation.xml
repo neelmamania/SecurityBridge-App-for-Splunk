@@ -6,7 +6,7 @@
       <fieldForLabel>duid</fieldForLabel>
       <fieldForValue>duid</fieldForValue>
       <search>
-        <query>index=* sourcetype=sapsb | table duid | dedup duid | sort duid</query>
+        <query>index=* sourcetype=sapsb* | table duid | dedup duid | sort duid</query>
         <earliest>-30d@d</earliest>
         <latest>now</latest>
       </search>
@@ -19,7 +19,7 @@
       <fieldForLabel>cs1</fieldForLabel>
       <fieldForValue>cs1</fieldForValue>
       <search>
-        <query>index=* sourcetype=sapsb $duid$ | table cs1  | dedup cs1 | sort cs1</query>
+        <query>index=* sourcetype=sapsb* $duid$ | table cs1  | dedup cs1 | sort cs1</query>
         <earliest>-30d@d</earliest>
         <latest>now</latest>
       </search>
@@ -34,7 +34,7 @@
       <fieldForLabel>src</fieldForLabel>
       <fieldForValue>src</fieldForValue>
       <search>
-        <query>index=* sourcetype=sapsb $duid$ cs1=$cs1$ | table src  | dedup src | sort src</query>
+        <query>index=* sourcetype=sapsb* $duid$ cs1=$cs1$ | table src  | dedup src | sort src</query>
         <earliest>-30d@d</earliest>
         <latest>now</latest>
       </search>
@@ -48,7 +48,7 @@
       <fieldForLabel>Device_Event_Class_ID</fieldForLabel>
       <fieldForValue>Device_Event_Class_ID</fieldForValue>
       <search>
-        <query>index=* sourcetype=sapsb $duid$ $src$ cs1=$cs1$ | table Device_Event_Class_ID  | dedup Device_Event_Class_ID | sort Device_Event_Class_ID</query>
+        <query>index=* sourcetype=sapsb* $duid$ $src$ cs1=$cs1$ | table Device_Event_Class_ID  | dedup Device_Event_Class_ID | sort Device_Event_Class_ID</query>
         <earliest>-30d@d</earliest>
         <latest>now</latest>
       </search>
@@ -62,7 +62,7 @@
       <fieldForLabel>Event</fieldForLabel>
       <fieldForValue>Event</fieldForValue>
       <search>
-        <query>index=* sourcetype=sapsb $duid$ cs1=$cs1$ $src$| table Event  | dedup Event | sort Event</query>
+        <query>index=* sourcetype=sapsb* $duid$ cs1=$cs1$ $src$| table Event  | dedup Event | sort Event</query>
         <earliest>-30d@d</earliest>
         <latest>now</latest>
       </search>
@@ -76,7 +76,7 @@
       <title>Low</title>
       <single>
         <search>
-          <query>index=* sourcetype=sapsb Severity=0 OR Severity=1 OR Severity=2 OR Severity=3 $duid$ $cs1$ $Event$ $Device_Event_Class_ID$ $src$ |stats count</query>
+          <query>index=* sourcetype=sapsb* Severity=0 OR Severity=1 OR Severity=2 OR Severity=3 $duid$ $cs1$ $Event$ $Device_Event_Class_ID$ $src$ |stats count</query>
           <earliest>-30d@d</earliest>
           <latest>now</latest>
         </search>
@@ -92,7 +92,7 @@
       <title>Medium</title>
       <single>
         <search>
-          <query>index=* sourcetype=sapsb Severity=4 OR Severity=5  OR  Severity=6  $duid$ $cs1$ $Event$ $Device_Event_Class_ID$ $src$  |stats count</query>
+          <query>index=* sourcetype=sapsb* Severity=4 OR Severity=5  OR  Severity=6  $duid$ $cs1$ $Event$ $Device_Event_Class_ID$ $src$  |stats count</query>
           <earliest>-30d@d</earliest>
           <latest>now</latest>
         </search>
@@ -108,7 +108,7 @@
       <title>High</title>
       <single>
         <search>
-          <query>index=* sourcetype=sapsb Severity=7 OR Severity=8  $duid$ $cs1$ $Event$ $Device_Event_Class_ID$ $src$  |stats count</query>
+          <query>index=* sourcetype=sapsb* Severity=7 OR Severity=8  $duid$ $cs1$ $Event$ $Device_Event_Class_ID$ $src$  |stats count</query>
           <earliest>-30d@d</earliest>
           <latest>now</latest>
         </search>
@@ -124,7 +124,7 @@
       <title>Critical</title>
       <single>
         <search>
-          <query>index=* sourcetype=sapsb Severity=10 OR Severity=9  $duid$ $cs1$ $Event$ $Device_Event_Class_ID$ $src$  |stats count</query>
+          <query>index=* sourcetype=sapsb* Severity=10 OR Severity=9  $duid$ $cs1$ $Event$ $Device_Event_Class_ID$ $src$  |stats count</query>
           <earliest>-30d@d</earliest>
           <latest>now</latest>
         </search>
@@ -140,7 +140,7 @@
       <title>Total Security Events</title>
       <single>
         <search>
-          <query>index=* sourcetype=sapsb $duid$ $cs1$ $Event$ $Device_Event_Class_ID$ $src$ |stats count</query>
+          <query>index=* sourcetype=sapsb* $duid$ $cs1$ $Event$ $Device_Event_Class_ID$ $src$ |stats count</query>
           <earliest>-30d@d</earliest>
           <latest>now</latest>
         </search>
@@ -158,7 +158,7 @@
       <title>Security Events</title>
       <table>
         <search>
-          <query>index=* sourcetype=sapsb  $duid$ cs1=$cs1$ $Event$ $Device_Event_Class_ID$ $src$  |  fillnull value=NULL  Severity, Device_Event_Class_ID,Event,duid,cs1, cs2,src,  msg | eval Time = strftime(_time, "%Y-%d-%m %H:%M:%S") | table Time, Severity, Device_Event_Class_ID,Event, src,duid,cs1, cs2, | rename Device_Event_Class_ID as Listener ,Event as Action, src as Terminal ,duid as User ,cs1 as SID, cs2 as "SAP Client", Time as "Date &amp; Time",</query>
+          <query>index=* sourcetype=sapsb*  $duid$ cs1=$cs1$ $Event$ $Device_Event_Class_ID$ $src$  |  fillnull value=NULL  Severity, Device_Event_Class_ID,Event,duid,cs1, cs2,src,  msg | eval Time = strftime(_time, "%Y-%d-%m %H:%M:%S") | table Time, Severity, Device_Event_Class_ID,Event, src,duid,cs1, cs2, | rename Device_Event_Class_ID as Listener ,Event as Action, src as Terminal ,duid as User ,cs1 as SID, cs2 as "SAP Client", Time as "Date &amp; Time",</query>
           <earliest>-30d@d</earliest>
           <latest>now</latest>
         </search>

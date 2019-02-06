@@ -16,10 +16,11 @@
       <fieldForLabel>cs1</fieldForLabel>
       <fieldForValue>cs1</fieldForValue>
       <search>
-        <query>index=* sourcetype=sapsb  | table cs1  | dedup cs1</query>
+        <query>index=* sourcetype=sapsb*  | table cs1  | dedup cs1</query>
         <earliest>$field1.earliest$</earliest>
         <latest>$field1.latest$</latest>
       </search>
+      <delimiter> </delimiter>
     </input>
   </fieldset>
   <row>
@@ -27,7 +28,7 @@
       <title>Events by Action (Top 10)</title>
       <chart>
         <search>
-          <query>index=* sourcetype=sapsb $cs1$  | stats count by Event | rename Event as Action | head 10 | sort - count</query>
+          <query>index=* sourcetype=sapsb* $cs1$  | stats count by Event | rename Event as Action | head 10 | sort - count</query>
           <earliest>$field1.earliest$</earliest>
           <latest>$field1.latest$</latest>
         </search>
@@ -46,7 +47,7 @@
       <title>Events by Time</title>
       <chart>
         <search>
-          <query>index=* sourcetype=sapsb $cs1$ |  convert num(Severity) as Severity | timechart span=1h  count by Severity  | sort Severity</query>
+          <query>index=* sourcetype=sapsb* $cs1$ |  convert num(Severity) as Severity | timechart span=1h  count by Severity  | sort Severity</query>
           <earliest>$field1.earliest$</earliest>
           <latest>$field1.latest$</latest>
         </search>
@@ -64,12 +65,13 @@
       <title>Events by SAP SID</title>
       <chart>
         <search>
-          <query>index=* sourcetype=sapsb $cs1$  | stats count by cs1 | head 10 | sort - count | rename cs1 as "SAP SID"</query>
+          <query>index=* sourcetype=sapsb* $cs1$  | stats count by cs1 | head 10 | sort - count | rename cs1 as "SAP SID"</query>
           <earliest>$field1.earliest$</earliest>
           <latest>$field1.latest$</latest>
         </search>
         <option name="charting.chart">column</option>
         <option name="charting.drilldown">all</option>
+        <option name="refresh.display">progressbar</option>
         <drilldown>
           <link target="_blank">/app/SecurityBridge_App_for_Splunk/event_analysis?form.cs1=$click.value$&amp;form.field1.earliest=$earliest$&amp;form.field1.latest=$latest$</link>
         </drilldown>
@@ -81,7 +83,7 @@
       <title>Events by Severity</title>
       <chart>
         <search>
-          <query>index=* sourcetype=sapsb $cs1$ | stats  count by Severity | sort + Severity</query>
+          <query>index=* sourcetype=sapsb* $cs1$ | stats  count by Severity | sort + Severity</query>
           <earliest>$field1.earliest$</earliest>
           <latest>$field1.latest$</latest>
         </search>
@@ -99,7 +101,7 @@
       <title>Security Event Statistics by User</title>
       <table>
         <search>
-          <query>index=* sourcetype=sapsb $cs1$ | stats  count sparkline by duid | rename sparkline as Trend, duid as User, count as Count|sort - Count</query>
+          <query>index=* sourcetype=sapsb* $cs1$ | stats  count sparkline by duid | rename sparkline as Trend, duid as User, count as Count|sort - Count</query>
           <earliest>$field1.earliest$</earliest>
           <latest>$field1.latest$</latest>
         </search>
@@ -111,7 +113,7 @@
       <title>Security Event Statistics by Host</title>
       <table>
         <search>
-          <query>index=* sourcetype=sapsb $cs1$ | stats  count sparkline by src | rename sparkline as Trend, src as Terminal, count as Count|sort - Count</query>
+          <query>index=* sourcetype=sapsb* $cs1$ | stats  count sparkline by src | rename sparkline as Trend, src as Terminal, count as Count|sort - Count</query>
           <earliest>$field1.earliest$</earliest>
           <latest>$field1.latest$</latest>
         </search>

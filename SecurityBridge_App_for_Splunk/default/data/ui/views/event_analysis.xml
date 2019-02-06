@@ -13,7 +13,7 @@
       <fieldForLabel>duid</fieldForLabel>
       <fieldForValue>duid</fieldForValue>
       <search>
-        <query>index=* sourcetype=sapsb   | table  duid | dedup duid | sort duid</query>
+        <query>index=* sourcetype=sapsb*   | table  duid | dedup duid | sort duid</query>
         <earliest>$field1.earliest$</earliest>
         <latest>$field1.latest$</latest>
       </search>
@@ -29,7 +29,7 @@
       <fieldForLabel>Severity</fieldForLabel>
       <fieldForValue>Severity</fieldForValue>
       <search>
-        <query>index=* sourcetype=sapsb | table Severity | dedup Severity | sort Severity</query>
+        <query>index=* sourcetype=sapsb* | table Severity | dedup Severity | sort Severity</query>
         <earliest>$field1.earliest$</earliest>
         <latest>$field1.latest$</latest>
       </search>
@@ -43,7 +43,7 @@
       <fieldForLabel>src</fieldForLabel>
       <fieldForValue>src</fieldForValue>
       <search>
-        <query>index=* sourcetype=sapsb | table src | dedup src | sort src</query>
+        <query>index=* sourcetype=sapsb* | table src | dedup src | sort src</query>
         <earliest>$field1.earliest$</earliest>
         <latest>$field1.latest$</latest>
       </search>
@@ -56,7 +56,7 @@
       <fieldForLabel>Device_Event_Class_ID</fieldForLabel>
       <fieldForValue>Device_Event_Class_ID</fieldForValue>
       <search>
-        <query>index=* sourcetype=sapsb $duid$ | table Device_Event_Class_ID  | dedup Device_Event_Class_ID | sort Device_Event_Class_ID</query>
+        <query>index=* sourcetype=sapsb* $duid$ | table Device_Event_Class_ID  | dedup Device_Event_Class_ID | sort Device_Event_Class_ID</query>
         <earliest>$field1.earliest$</earliest>
         <latest>$field1.latest$</latest>
       </search>
@@ -70,7 +70,7 @@
       <fieldForLabel>cs1</fieldForLabel>
       <fieldForValue>cs1</fieldForValue>
       <search>
-        <query>index=* sourcetype=sapsb $duid$ | table cs1  | dedup cs1 | sort cs1</query>
+        <query>index=* sourcetype=sapsb* $duid$ | table cs1  | dedup cs1 | sort cs1</query>
         <earliest>$field1.earliest$</earliest>
         <latest>$field1.latest$</latest>
       </search>
@@ -84,7 +84,7 @@
       <fieldForLabel>cs2</fieldForLabel>
       <fieldForValue>cs2</fieldForValue>
       <search>
-        <query>index=* sourcetype=sapsb $duid$ cs1=$cs1$| table cs2  | dedup cs2 | sort cs2</query>
+        <query>index=* sourcetype=sapsb* $duid$ cs1=$cs1$| table cs2  | dedup cs2 | sort cs2</query>
         <earliest>$field1.earliest$</earliest>
         <latest>$field1.latest$</latest>
       </search>
@@ -99,14 +99,16 @@
     <panel>
       <table>
         <search>
-          <query>index="sap" sourcetype=sapsb $duid$ $src$  cs1=$cs1$ cs2=$cs2$  $Device_Event_Class_ID$ Event="*$Action$*"| fillnull value=NULL  Severity, Device_Event_Class_ID,Event,duid,cs1, cs2,src,  msg | search Severity=*$Severity$* | rex mode=sed field=msg "s/\\\//g" | eval Time = strftime(_time, "%Y-%d-%m %H:%M:%S")|table Time, Severity, Device_Event_Class_ID,Event,duid,cs1, cs2, msg, src | rename Device_Event_Class_ID as Listener ,Event as Action, src as Terminal ,duid as User ,cs1 as SID, cs2 as "SAP Client" ,msg as Message, count as "Total no." Time as "Date &amp; Time",</query>
+          <query>index="sap" sourcetype=sapsb* $duid$ $src$  cs1=$cs1$ cs2=$cs2$  $Device_Event_Class_ID$ Event="*$Action$*"| fillnull value=NULL  Severity, Device_Event_Class_ID,Event,duid,cs1, cs2,src,  msg  | search Severity=*$Severity$* | rex mode=sed field=msg "s/\\\//g" | eval Time = strftime(_time, "%Y-%d-%m %H:%M:%S")|table Time, Severity, Device_Event_Class_ID,Event,duid,cs1, cs2, msg, src, guid | rename Device_Event_Class_ID as Listener ,Event as Action, src as Terminal ,duid as User ,cs1 as SID, cs2 as "SAP Client" ,msg as Message, count as "Total no." Time as "Date &amp; Time",</query>
           <earliest>$field1.earliest$</earliest>
           <latest>$field1.latest$</latest>
           <sampleRatio>1</sampleRatio>
+          
         </search>
+        <fields> "Date &amp; Time", Severity, Listener,Action,User,SID,"SAP Client", Message, Terminal</fields>
         <option name="count">20</option>
         <option name="dataOverlayMode">none</option>
-        <option name="drilldown">none</option>
+        <option name="drilldown">cell</option>
         <option name="percentagesRow">false</option>
         <option name="refresh.display">progressbar</option>
         <option name="rowNumbers">false</option>
@@ -116,6 +118,11 @@
           <colorPalette type="list">[#FFFFFF,#65A637,#F7BC38,#ED8440,#D93F3C]</colorPalette>
           <scale type="threshold">0,4,7,9</scale>
         </format>
+        
+        
+        <drilldown>
+          <link target="_blank">http://abex3.abap-experts.com:8003/sap/bc/ui5_ui5/abex/sefwmd/#/events/details/$row.guid$</link>
+        </drilldown>
       </table>
     </panel>
   </row>

@@ -43,7 +43,7 @@ def create_api_input(incident_dict_host,interval,host,index,sourcetype):
 		rd.close()
 
 		line_number = [i for i, s in enumerate(xml_lines) if "drilldown" in s][0]
-		xml_lines[line_number] = "<option name=\"drilldown\">cell</option>\n<drilldown>\n<link target=\"_blank\">"+incident_dict_host+"</link>\n</drilldown>"
+		xml_lines[line_number] = "\n<option name=\"drilldown\">cell</option>\n<drilldown>\n<link target=\"_blank\">"+incident_dict_host+"/sap/bc/ui5_ui5/abex/sefwmd/#/events/details/$row.guid$</link>\n</drilldown>"
 
 		wr = open(dashboard, "w")
 		wr.writelines(xml_lines)
