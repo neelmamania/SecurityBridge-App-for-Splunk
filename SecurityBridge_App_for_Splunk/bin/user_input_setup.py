@@ -9,7 +9,7 @@ class ConfigApp(admin.MConfigHandler):
     
     def setup(self):
         if self.requestedAction == admin.ACTION_EDIT:
-            for arg in ['monitor_directory_path', 'index', 'host', 'sourcetype']:
+            for arg in ['monitor_file','monitor_api','incident_dict_host','rest_api','username','password','interval','monitor_directory_path', 'index', 'host', 'sourcetype']:
                 self.supportedArgs.addOptArg(arg)
     
     def handleList(self, confInfo):
@@ -26,11 +26,23 @@ class ConfigApp(admin.MConfigHandler):
                 val[0] = ''
         
         monitor_dict_path = args['monitor_directory_path'][0]
+        monitor_api = args['monitor_api'][0]
+        monitor_file = args['monitor_file'][0]
+        incident_dict_host = args['incident_dict_host'][0]
+        rest_api = args['rest_api'][0]
+        username = args['username'][0]
+        password = args['password'][0]
+        interval = args['interval'][0]
         index = args['index'][0]
         host = args['host'][0]
         sourcetype = args['sourcetype'][0]
+
+        if monitor_api.lower().strip() in ("1", "true", "yes", "t", "y"):
+            inputs_conf.create_api_input(incident_dict_host,interval,host,index,sourcetype)
+        elif monitor_file.lower().strip() in ("1", "true", "yes", "t", "y"):
+            inputs_conf.create_monitor_input(monitor_dict_path,host,index,sourcetype)
         
-        inputs_conf.create_inputs(monitor_dict_path, host, index, sourcetype)
+        #inputs_conf.create_inputs(monitor_dict_path, host, index, sourcetype)
         
         self.writeConf('user_input_setup', 'input_configuration', self.callerArgs.data)
         
