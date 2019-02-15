@@ -1,0 +1,175 @@
+<form stylesheet="application.css">
+  <label>Event Analysis</label>
+  <fieldset submitButton="false" autoRun="true">
+    <input type="dropdown" token="duid">
+      <label>User</label>
+      <fieldForLabel>duid</fieldForLabel>
+      <fieldForValue>duid</fieldForValue>
+      <search>
+        <query>index=* sourcetype=sapsb | table duid | dedup duid | sort duid</query>
+        <earliest>-30d@d</earliest>
+        <latest>now</latest>
+      </search>
+    </input>
+    <input type="multiselect" token="cs1">
+      <label>SAP SID</label>
+      <choice value="*">ALL</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+      <fieldForLabel>cs1</fieldForLabel>
+      <fieldForValue>cs1</fieldForValue>
+      <search>
+        <query>index=* sourcetype=sapsb $duid$ | table cs1  | dedup cs1 | sort cs1</query>
+        <earliest>-30d@d</earliest>
+        <latest>now</latest>
+      </search>
+      <delimiter>  OR cs1=</delimiter>
+    </input>
+    <input type="multiselect" token="src">
+      <label>Terminal</label>
+      <choice value="*">ALL</choice>
+      <choice value="NOT src=&quot;*&quot;">NULL</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+      <fieldForLabel>src</fieldForLabel>
+      <fieldForValue>src</fieldForValue>
+      <search>
+        <query>index=* sourcetype=sapsb $duid$ cs1=$cs1$ | table src  | dedup src | sort src</query>
+        <earliest>-30d@d</earliest>
+        <latest>now</latest>
+      </search>
+      <delimiter>  OR </delimiter>
+    </input>
+    <input type="multiselect" token="Device_Event_Class_ID">
+      <label>Listener</label>
+      <choice value="*">ALL</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+      <fieldForLabel>Device_Event_Class_ID</fieldForLabel>
+      <fieldForValue>Device_Event_Class_ID</fieldForValue>
+      <search>
+        <query>index=* sourcetype=sapsb $duid$ $src$ cs1=$cs1$ | table Device_Event_Class_ID  | dedup Device_Event_Class_ID | sort Device_Event_Class_ID</query>
+        <earliest>-30d@d</earliest>
+        <latest>now</latest>
+      </search>
+      <delimiter> OR </delimiter>
+    </input>
+    <input type="multiselect" token="Event">
+      <label>Action</label>
+      <choice value="*">ALL</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+      <fieldForLabel>Event</fieldForLabel>
+      <fieldForValue>Event</fieldForValue>
+      <search>
+        <query>index=* sourcetype=sapsb $duid$ cs1=$cs1$ $src$| table Event  | dedup Event | sort Event</query>
+        <earliest>-30d@d</earliest>
+        <latest>now</latest>
+      </search>
+      <delimiter>  OR </delimiter>
+      <valuePrefix>"</valuePrefix>
+      <valueSuffix>"</valueSuffix>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <title>Low</title>
+      <single>
+        <search>
+          <query>index=* sourcetype=sapsb Severity=0 OR Severity=1 OR Severity=2 OR Severity=3 $duid$ $cs1$ $Event$ $Device_Event_Class_ID$ $src$ |stats count</query>
+          <earliest>-30d@d</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="colorMode">block</option>
+        <option name="drilldown">none</option>
+        <option name="rangeColors">["0x65a637","0x65a637"]</option>
+        <option name="rangeValues">[0]</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="useColors">1</option>
+      </single>
+    </panel>
+    <panel>
+      <title>Medium</title>
+      <single>
+        <search>
+          <query>index=* sourcetype=sapsb Severity=4 OR Severity=5  OR  Severity=6  $duid$ $cs1$ $Event$ $Device_Event_Class_ID$ $src$  |stats count</query>
+          <earliest>-30d@d</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="colorMode">block</option>
+        <option name="drilldown">none</option>
+        <option name="rangeColors">["0x65a637","0xf7bc38"]</option>
+        <option name="rangeValues">[0]</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="useColors">1</option>
+      </single>
+    </panel>
+    <panel>
+      <title>High</title>
+      <single>
+        <search>
+          <query>index=* sourcetype=sapsb Severity=7 OR Severity=8  $duid$ $cs1$ $Event$ $Device_Event_Class_ID$ $src$  |stats count</query>
+          <earliest>-30d@d</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="colorMode">block</option>
+        <option name="drilldown">none</option>
+        <option name="rangeColors">["0x65a637","0xf58f39"]</option>
+        <option name="rangeValues">[0]</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="useColors">1</option>
+      </single>
+    </panel>
+    <panel>
+      <title>Critical</title>
+      <single>
+        <search>
+          <query>index=* sourcetype=sapsb Severity=10 OR Severity=9  $duid$ $cs1$ $Event$ $Device_Event_Class_ID$ $src$  |stats count</query>
+          <earliest>-30d@d</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="colorMode">block</option>
+        <option name="drilldown">none</option>
+        <option name="rangeColors">["0x65a637","0xd93f3c"]</option>
+        <option name="rangeValues">[0]</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="useColors">1</option>
+      </single>
+    </panel>
+    <panel>
+      <title>Total Security Events</title>
+      <single>
+        <search>
+          <query>index=* sourcetype=sapsb $duid$ $cs1$ $Event$ $Device_Event_Class_ID$ $src$ |stats count</query>
+          <earliest>-30d@d</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="colorMode">block</option>
+        <option name="drilldown">none</option>
+        <option name="rangeColors">["0x65a637","0x6db7c6"]</option>
+        <option name="rangeValues">[0]</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="useColors">1</option>
+      </single>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Security Events</title>
+      <table>
+        <search>
+          <query>index=* sourcetype=sapsb  $duid$ cs1=$cs1$ $Event$ $Device_Event_Class_ID$ $src$  |  fillnull value=NULL  Severity, Device_Event_Class_ID,Event,duid,cs1, cs2,src,  msg | eval Time = strftime(_time, "%Y-%d-%m %H:%M:%S") | table Time, Severity, Device_Event_Class_ID,Event, src,duid,cs1, cs2, | rename Device_Event_Class_ID as Listener ,Event as Action, src as Terminal ,duid as User ,cs1 as SID, cs2 as "SAP Client", Time as "Date &amp; Time",</query>
+          <earliest>-30d@d</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="count">50</option>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+        <format type="color" field="Severity">
+          <colorPalette type="list">[#FFFFFF,#65A637,#F7BC38,#ED8440,#D93F3C]</colorPalette>
+          <scale type="threshold">0,4,7,9</scale>
+        </format>
+      </table>
+    </panel>
+  </row>
+</form>

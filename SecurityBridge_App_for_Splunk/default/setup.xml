@@ -38,7 +38,7 @@
 
         <input field="password">
             <label>Password</label>
-            <type>text</type>
+            <type>password</type>
         </input>
 
         <input field="interval">

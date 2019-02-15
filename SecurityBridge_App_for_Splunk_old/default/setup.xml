@@ -1,0 +1,29 @@
+<setup>
+    
+    <block title="Input Configuration" endpoint="user_input_setup/input_configuration" entity="input_configuration">
+        
+        <text>Provide the following details for file or directory monitoring.</text>
+        
+        <input field="monitor_directory_path">
+            <label>Monitor Directory Path</label>
+            <type>text</type>
+        </input>
+        
+        <input field="index">
+            <label>Index Name</label>
+            <type>text</type>
+        </input>
+        
+        <input field="host">
+            <label>Host</label>
+            <type>text</type>
+        </input>
+        
+        <input field="sourcetype">
+            <label>Sourcetype</label>
+            <type>text</type>
+        </input>
+        
+    </block>
+    
+</setup>
