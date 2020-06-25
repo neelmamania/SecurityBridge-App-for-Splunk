@@ -5,7 +5,7 @@
         <text>Select the suitable data collection method.</text>
 
         <input field="monitor_file">
-            <label>File/Direcotry Monitoring</label>
+            <label>File/Directory Monitoring</label>
             <type>bool</type>
         </input>
 

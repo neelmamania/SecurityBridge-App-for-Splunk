@@ -25,4 +25,4 @@ if __name__ == '__main__':
 	#print password
 
 	response = requests.request("GET",rest_api, params={}, auth=(username, password))
-	print response.text
+	print (response.text)
