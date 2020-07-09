@@ -107,8 +107,14 @@
         <fields>"Date &amp; Time", Severity, Listener,Action,User,SID,"SAP Client", Message, Terminal</fields>
         <option name="count">20</option>
         <option name="dataOverlayMode">none</option>
-        <option name="drilldown">cell</option>
-        <drilldown>
+
+
+<option name="drilldown">cell</option>
+<drilldown>
+<link target="_blank">http://abex3.abap-experts.com:8003/sap/bc/ui5_ui5/abex/sefwmd/#/events/details/$row.guid$</link>
+</drilldown><drilldown>
+<link target="_blank">http://abex3.abap-experts.com:8003/sap/bc/ui5_ui5/abex/sefwmd/#/events/details/$row.guid$</link>
+</drilldown>        <drilldown>
           <link target="_blank">http://abex3.abap-experts.com:8003/sap/bc/ui5_ui5/abex/sefwmd/#/events/details/$row.guid$</link>
         </drilldown>
         <drilldown>

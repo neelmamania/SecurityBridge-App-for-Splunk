@@ -14,15 +14,15 @@ if __name__ == '__main__':
 
 	line_number = [i for i, s in enumerate(api_details) if s.startswith("rest_api =")][0]
 	rest_api = api_details[line_number].replace("rest_api = ","").strip()
-	print (rest_api)
+	#print (rest_api)
 
 	line_number = [i for i, s in enumerate(api_details) if s.startswith("username =")][0]
 	username = api_details[line_number].split("=")[1].strip()
-	print (username)
+	#print (username)
 
 	line_number = [i for i, s in enumerate(api_details) if s.startswith("password =")][0]
 	password = api_details[line_number].replace("password = ","").strip()
-	print (password)
+	#print (password)
 
 	response = requests.request("GET",rest_api, params={}, auth=(username, password))
 	print (response.text)
