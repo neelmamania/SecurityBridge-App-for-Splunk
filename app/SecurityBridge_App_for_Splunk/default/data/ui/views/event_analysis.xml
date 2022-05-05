@@ -1,0 +1,123 @@
+<form stylesheet="application.css,table_decorations.css" script="table_icons_rangemap.js,tablepopup.js" theme="dark">
+  <label>Event Monitor</label>
+  <fieldset submitButton="false" autoRun="true">
+    <input type="time" token="field1">
+      <label>Time</label>
+      <default>
+        <earliest>-30d@d</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+    <input type="dropdown" token="duid">
+      <label>User</label>
+      <fieldForLabel>duid</fieldForLabel>
+      <fieldForValue>duid</fieldForValue>
+      <search>
+        <query>`sapsb` sourcetype=sapsb*   | table  duid | dedup duid | sort duid</query>
+        <earliest>$field1.earliest$</earliest>
+        <latest>$field1.latest$</latest>
+      </search>
+      <default>*</default>
+      <initialValue>*</initialValue>
+      <choice value="*">ALL</choice>
+    </input>
+    <input type="dropdown" token="Severity">
+      <label>Severity</label>
+      <choice value="*">ALL</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+      <fieldForLabel>Severity</fieldForLabel>
+      <fieldForValue>Severity</fieldForValue>
+      <search>
+        <query>`sapsb` sourcetype=sapsb* | table Severity | dedup Severity | sort Severity</query>
+        <earliest>$field1.earliest$</earliest>
+        <latest>$field1.latest$</latest>
+      </search>
+    </input>
+    <input type="dropdown" token="src">
+      <label>Terminal</label>
+      <choice value="*">ALL</choice>
+      <choice value="src=&quot;&quot;">&lt;unknown&gt;</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+      <fieldForLabel>src</fieldForLabel>
+      <fieldForValue>src</fieldForValue>
+      <search>
+        <query>`sapsb` sourcetype=sapsb* NOT src=""  | table src | dedup src | sort src</query>
+        <earliest>$field1.earliest$</earliest>
+        <latest>$field1.latest$</latest>
+      </search>
+    </input>
+    <input type="multiselect" token="Device_Event_Class_ID">
+      <label>Listener</label>
+      <choice value="*">ALL</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+      <fieldForLabel>Device_Event_Class_ID</fieldForLabel>
+      <fieldForValue>Device_Event_Class_ID</fieldForValue>
+      <search>
+        <query>`sapsb` sourcetype=sapsb* $duid$ | table Device_Event_Class_ID  | dedup Device_Event_Class_ID | sort Device_Event_Class_ID</query>
+        <earliest>$field1.earliest$</earliest>
+        <latest>$field1.latest$</latest>
+      </search>
+      <delimiter> </delimiter>
+    </input>
+    <input type="multiselect" token="cs1">
+      <label>SID</label>
+      <choice value="*">ALL</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+      <fieldForLabel>cs1</fieldForLabel>
+      <fieldForValue>cs1</fieldForValue>
+      <search>
+        <query>`sapsb` sourcetype=sapsb* $duid$ | table cs1  | dedup cs1 | sort cs1</query>
+        <earliest>$field1.earliest$</earliest>
+        <latest>$field1.latest$</latest>
+      </search>
+      <delimiter>  OR cs1=</delimiter>
+    </input>
+    <input type="multiselect" token="cs2">
+      <label>SAP Client</label>
+      <choice value="*">ALL</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+      <fieldForLabel>cs2</fieldForLabel>
+      <fieldForValue>cs2</fieldForValue>
+      <search>
+        <query>`sapsb` sourcetype=sapsb* $duid$ cs1=$cs1$| table cs2  | dedup cs2 | sort cs2</query>
+        <earliest>$field1.earliest$</earliest>
+        <latest>$field1.latest$</latest>
+      </search>
+      <delimiter> OR cs2= </delimiter>
+    </input>
+    <input type="text" token="Action">
+      <label>Action</label>
+      <default></default>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <table id="table1">
+        <search>
+          <query>`sapsb` sourcetype=sapsb* $duid$ $src$  cs1=$cs1$ cs2=$cs2$  $Device_Event_Class_ID$ Event="*$Action$*" | eval src=if(src="","&lt;unknown&gt;",'src')  | fillnull value=NULL  Severity, Device_Event_Class_ID,Event,duid,cs1, cs2,  msg  | search Severity=*$Severity$* | rex mode=sed field=msg "s/\\\//g" | eval Time = strftime(_time, "%Y-%d-%m %H:%M:%S") | join type=left duid [|search `sapsb` sourcetype=sapsb* | eval src=if(src="","&lt;unknown&gt;",'src') | stats dc(src) as number_of_terminals by duid | eval number_of_terminals=if(duid==""OR number_of_terminals = 1,"low","elevated")] | table Time, Severity, Device_Event_Class_ID,Event,duid,cs1, cs2, msg, src, number_of_terminals, guid | rename Device_Event_Class_ID as Listener ,Event as Action, src as Terminal ,duid as User ,cs1 as SID, cs2 as "SAP Client" ,msg as Message, count as "Total no." Time as "Date &amp; Time", number_of_terminals as Multiple_Logins</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="count">20</option>
+        <option name="dataOverlayMode">none</option>
+        <option name="drilldown">cell</option>
+        <option name="percentagesRow">false</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="rowNumbers">false</option>
+        <option name="totalsRow">false</option>
+        <option name="wrap">true</option>
+        <format type="color" field="Severity">
+          <colorPalette type="list">[#FFFFFF,#65A637,#F7BC38,#ED8440,#D93F3C]</colorPalette>
+          <scale type="threshold">0,4,7,9</scale>
+        </format>
+        <fields>["Date &amp; Time","Severity","Listener","Action","User","SID","SAP Client","Message","Terminal","Multiple_Logins"]</fields>
+      </table>
+    </panel>
+  </row>
+</form>

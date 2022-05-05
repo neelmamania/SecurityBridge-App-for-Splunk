@@ -1,0 +1,90 @@
+{
+    "meta": {
+        "apiVersion": "1.0.0"
+    },
+    "tokens": [
+        "__settings__.logging.loglevel",
+        "__settings__.additional_parameters.username",
+        "__settings__.additional_parameters.password",
+        "incident_dictionary_host",
+        "rest_api_endpoint",
+        "global_account.username",
+        "global_account.password"
+    ],
+    "global_settings": {
+        "logging": {
+            "level": "{{__settings__.logging.loglevel}}"
+        }
+    },
+    "requests": [
+        {
+            "pre_process": {
+                "skip_conditions": [],
+                "pipeline": []
+            },
+            "request": {
+                "url": "{{rest_api_endpoint}}",
+                "method": "GET",
+                "headers": {},
+                "auth": {
+                    "type": "basic_auth",
+                    "options": {
+                        "username": "{{global_account.username}}",
+                        "password": "{{global_account.password}}"
+                    }
+                }
+            },
+            "post_process": {
+                "skip_conditions": [
+                    {
+                        "input": [
+                            "{{__response__.body}}",
+                            "$.d.results"
+                        ],
+                        "method": "json_empty"
+                    }
+                ],
+                "pipeline": [
+                    {
+                        "input": [
+                            "{{__response__.body}}",
+                            "$.d.results"
+                        ],
+                        "method": "json_path",
+                        "output": "__stdout__"
+                    },
+                    {
+                        "input": [
+                            "{{__stdout__}}",
+                            "",
+                            "{{index}}",
+                            "{{host}}",
+                            "{{source}}",
+                            "{{sourcetype}}"
+                        ],
+                        "method": "splunk_xml",
+                        "output": "__stdout__"
+                    },
+                    {
+                        "input": [
+                            "{{__stdout__}}"
+                        ],
+                        "method": "std_output"
+                    }
+                ]
+            },
+            "iteration_mode": {
+                "iteration_count": "1",
+                "stop_conditions": [
+                    {
+                        "input": [
+                            "{{__response__.body}}",
+                            "$.d.results"
+                        ],
+                        "method": "json_empty"
+                    }
+                ]
+            }
+        }
+    ]
+}

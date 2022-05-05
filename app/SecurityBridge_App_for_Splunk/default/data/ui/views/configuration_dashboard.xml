@@ -1,0 +1,159 @@
+<dashboard stylesheet="admin.css,default.css" script="hide.js">
+  <label>Input Configuration</label>
+<row>
+  <html>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<style>
+		#cover-spin {
+    position:fixed;
+    width:100%;
+    left:0;right:0;top:0;bottom:0;
+    background-color: rgba(255,255,255,0.7);
+    z-index:9999;
+    display:none;
+}
+
+@-webkit-keyframes spin {
+	from {-webkit-transform:rotate(0deg);}
+	to {-webkit-transform:rotate(360deg);}
+}
+
+@keyframes spin {
+	from {transform:rotate(0deg);}
+	to {transform:rotate(360deg);}
+}
+
+#cover-spin::after {
+    content:'';
+    display:block;
+    position:absolute;
+    left:48%;top:40%;
+    width:40px;height:40px;
+    border-style:solid;
+    border-color:black;
+    border-top-color:transparent;
+    border-width: 4px;
+    border-radius:50%;
+    -webkit-animation: spin .8s linear infinite;
+    animation: spin .8s linear infinite;
+}
+	</style>
+
+<div id="cover-spin" ></div>
+    <div class="adminContent">
+        <div class="editFormWrapper">
+            <div class="splOverlay-white"></div>            
+            <form class="entityEditForm">
+                <div class="formWrapper">
+
+                    <div id="item-textNode-0-0" class="standaloneHelp ">
+                        <p class="helpText">Select the suitable data collection method.</p>
+                    </div>
+                    <div id="monitor_file" class="checkboxWidget widget">
+                        <div>
+                            <input id="monitor_file_id" type="radio" class="checkbox proxiable " name="monitor_file" value="1" />
+                            <label for="monitor_file_id" class="">File/Directory Monitoring</label>
+                        </div>
+
+                    </div>
+                    <div id="monitor_api" class="checkboxWidget  widget">
+                        <div>
+                            <input id="monitor_api_id" type="radio" class="checkbox proxiable " name="monitor_file" value="2" />
+                            <label for="monitor_api_id" class="">REST API</label>
+                        </div>
+                    </div>
+                    <div id="monitor_directory_path" class="widget ">
+                        <label for="monitor_directory_path_id" class="">
+                            Monitor Directory Path
+                        </label>
+                        <div>
+                            <input type="text" name="monitor_directory_path" id="monitor_directory_path_id" value="" />
+                        </div>
+                    </div>
+                    <div id="incident_dict_host" class="widget ">
+                        <label for="incident_dict_host_id" class="">
+                            Incident Dictionary Host
+                        </label>
+                        <div>
+                            <input type="text" name="incident_dict_host" id="incident_dict_host_id" value="" />
+                        </div>
+                    </div>
+
+                    <div id="rest_api" class="widget ">
+                        <label for="rest_api_id" class="">
+                            REST API URL
+                        </label>
+                        <div>
+                            <input type="text" name="rest_api" id="rest_api_id" value="" />
+                        </div>
+                    </div>
+
+                    <div id="username" class="widget ">
+                        <label for="username_id" class="">
+                            Username
+                        </label>
+                        <div>
+                            <input type="text" name="username" id="username_id" value="" />
+                        </div>
+                    </div>
+                    <div id="password" class="widget">
+                        <label for="password_id" class="">
+                            Password
+                        </label>
+                        <div>
+                            <input id="password_id" type="password" autocomplete="off" name="password" value="" />
+                        </div>
+                    </div>
+                    <div id="password_confirm" class="widget">
+                        <label for="password_id_confirm" class="">Confirm password</label>
+                        <div>
+                            <input id="password_id_confirm" type="password" name="spl-ctrl_password-confirm" value="" />
+                        </div>
+                    </div>
+
+                    <div id="interval" class="widget ">
+                        <label for="interval_id" class="">
+                            Interval
+                        </label>
+                        <div>
+                            <input type="text" name="interval" id="interval_id" value="" />
+                        </div>
+                    </div>
+                    <div id="index" class="widget ">
+                        <label for="index_id" class="">
+                            Index Name
+                        </label>
+                        <div>
+                            <input type="text" name="index" id="index_id" value="" />
+                        </div>
+                    </div>
+                    <div id="host" class="widget ">
+                        <label for="host_id" class="">
+                            Host
+                        </label>
+                        <div>
+                            <input type="text" name="host" id="host_id" value="" />
+                        </div>
+                    </div>
+
+                    <div id="sourcetype" class="widget ">
+                        <label for="sourcetype_id" class="">
+                            Sourcetype
+                        </label>
+                        <div>
+                            <input type="text" name="sourcetype" id="sourcetype_id" value="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="jmFormActions" style="">
+                    <button class="splButton-secondary" type="button" ><span>Cancel</span></button>                    
+                    <button type="button" class="splButton-primary" id="submit_button" >
+                        <span>Save</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</html>
+</row>
+</dashboard>
