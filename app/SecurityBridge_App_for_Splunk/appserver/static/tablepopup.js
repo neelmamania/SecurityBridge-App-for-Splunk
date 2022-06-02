@@ -36,49 +36,49 @@ require([
             //console.log(guid);
             switch (e.field){
                 case "Severity":
-                    var alert_details = api_url+"sap/bc/ui5_ui5/abex/sefwmd/#/events/details/"+guid;
+                    var alert_details = api_url+"sap/bc/ui5_ui5/abex/sefwmd/index_cdn.html#/events/details/"+guid;
                     var tab = window.open(alert_details, "_blank");
                     tab.focus();
                     break;
 
                 case "Listener":
-                    var alert_details = api_url+"sap/bc/ui5_ui5/abex/sefwmd/#/events/details/"+guid;
+                    var alert_details = api_url+"sap/bc/ui5_ui5/abex/sefwmd/index_cdn.html#/events/details/"+guid;
                     var tab = window.open(alert_details, "_blank");
                     tab.focus();
                     break;
 
                 case "Action":
-                    var alert_details = api_url+"sap/bc/ui5_ui5/abex/sefwmd/#/events/details/"+guid;
+                    var alert_details = api_url+"sap/bc/ui5_ui5/abex/sefwmd/index_cdn.html#/events/details/"+guid;
                     var tab = window.open(alert_details, "_blank");
                     tab.focus();
                     break;
 
                 case "User":
-                    var alert_details = api_url+"sap/bc/ui5_ui5/abex/sefwmd/#/events/details/"+guid;
+                    var alert_details = api_url+"sap/bc/ui5_ui5/abex/sefwmd/index_cdn.html#/events/details/"+guid;
                     var tab = window.open(alert_details, "_blank");
                     tab.focus();
                     break;
 
                 case "SID":
-                    var alert_details = api_url+"sap/bc/ui5_ui5/abex/sefwmd/#/events/details/"+guid;
+                    var alert_details = api_url+"sap/bc/ui5_ui5/abex/sefwmd/index_cdn.html#/events/details/"+guid;
                     var tab = window.open(alert_details, "_blank");
                     tab.focus();
                     break;
 
                 case "SAP Client":
-                    var alert_details = api_url+"sap/bc/ui5_ui5/abex/sefwmd/#/events/details/"+guid;
+                    var alert_details = api_url+"sap/bc/ui5_ui5/abex/sefwmd/index_cdn.html#/events/details/"+guid;
                     var tab = window.open(alert_details, "_blank");
                     tab.focus();
                     break;
 
                 case "Message":
-                    var alert_details = api_url+"sap/bc/ui5_ui5/abex/sefwmd/#/events/details/"+guid;
+                    var alert_details = api_url+"sap/bc/ui5_ui5/abex/sefwmd/index_cdn.html#/events/details/"+guid;
                     var tab = window.open(alert_details, "_blank");
                     tab.focus();
                     break;
 
                 case "Terminal":
-                    var alert_details = api_url+"sap/bc/ui5_ui5/abex/sefwmd/#/events/details/"+guid;
+                    var alert_details = api_url+"sap/bc/ui5_ui5/abex/sefwmd/index_cdn.html#/events/details/"+guid;
                     var tab = window.open(alert_details, "_blank");
                     tab.focus();
                     break;

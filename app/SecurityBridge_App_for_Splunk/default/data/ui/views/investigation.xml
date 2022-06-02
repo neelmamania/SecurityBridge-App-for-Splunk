@@ -1,4 +1,4 @@
-<form stylesheet="application.css,table_decorations.css" script="table_icons_rangemap.js" theme="dark">
+<form stylesheet="application.css,table_decorations.css" script="table_icons_rangemap.js" version="1.1" theme="dark">
   <label>Event Analysis</label>
   <fieldset submitButton="false" autoRun="true">
     <input type="dropdown" token="duid">
