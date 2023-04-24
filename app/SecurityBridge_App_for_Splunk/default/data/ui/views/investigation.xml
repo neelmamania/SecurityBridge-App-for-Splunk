@@ -157,7 +157,7 @@
   <row>
     <panel>
       <title>Security Events</title>
-      <table>
+      <table id="table1">
         <search>
           <query>`sapsb` sourcetype=sapsb*  $duid$ cs1=$cs1$ $Event$ $Device_Event_Class_ID$ $src$  |  fillnull value=NULL  Severity, Device_Event_Class_ID,Event,duid,cs1, cs2,src,  msg | eval Time = strftime(_time, "%Y-%d-%m %H:%M:%S") | eval src=if(src="","&lt;unknown&gt;",'src')  | table Time, Severity, Device_Event_Class_ID,Event,eventMsg, src,duid,cs1, cs2, | rename Device_Event_Class_ID as Listener ,Event as Action,eventMsg as Message src as Terminal ,duid as User ,cs1 as SID, cs2 as "SAP Client", Time as "Date &amp; Time",</query>
           <earliest>-30d@d</earliest>

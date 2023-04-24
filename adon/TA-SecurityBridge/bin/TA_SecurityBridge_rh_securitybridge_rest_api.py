@@ -34,16 +34,6 @@ fields = [
         )
     ), 
     field.RestField(
-        'incident_dictionary_host',
-        required=False,
-        encrypted=False,
-        default=None,
-        validator=validator.String(
-            min_len=0, 
-            max_len=8192, 
-        )
-    ), 
-    field.RestField(
         'rest_api_endpoint',
         required=True,
         encrypted=False,

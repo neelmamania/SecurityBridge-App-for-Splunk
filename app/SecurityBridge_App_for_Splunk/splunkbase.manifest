@@ -1,0 +1,263 @@
+{
+  "version": "1.0",
+  "date": "2022-11-14T21:18:20.619761157Z",
+  "hashAlgorithm": "SHA-256",
+  "app": {
+    "id": 4081,
+    "version": "4.0.11",
+    "files": [
+      {
+        "path": "app.manifest",
+        "hash": "8bb6f77928760f0ed8f2957ee0513cc5923d6f3b869b7596ba3ed1feed77c015"
+      },
+      {
+        "path": "README.txt",
+        "hash": "07ff1af496b0ad98c792901be13953a21202201cd31314f821024e56930fdde1"
+      },
+      {
+        "path": "license-eula.txt",
+        "hash": "7b040916fb4e5ad5059383f423d707c9702cb04bcca92bd090af50684710675c"
+      },
+      {
+        "path": "license-eula.rtf",
+        "hash": "874857b3e81e2ed3808fd15267bce81ed208ad9c8e381bbcf03db05fbac58307"
+      },
+      {
+        "path": "default/eventtypes.conf",
+        "hash": "ac0ed08fa89117876a5e38cfe12f48074a372a563eabfa7205f7b0fc3fdcee7c"
+      },
+      {
+        "path": "default/app.conf",
+        "hash": "4a78025832a6008f16f481530a1c895d94faa8c5769373d51efb562bb542d660"
+      },
+      {
+        "path": "default/tags.conf",
+        "hash": "337166455851f2f172aa6941a52b72076381d2859f5cf7c098a34ec2c71a06d5"
+      },
+      {
+        "path": "default/props.conf",
+        "hash": "8c02c4cbb9885feff54f45c5bad274ebe8e1c84abb624bb3489137e1c2f553b3"
+      },
+      {
+        "path": "default/macros.conf",
+        "hash": "a90a15fe8c6fe9bd990e48d98856e2f706cd204069fd534f430ad8ed0de2e9b6"
+      },
+      {
+        "path": "default/transforms.conf",
+        "hash": "fa92f37ff36a6f3e353e14840b99edab99ab8f6e0e1e926e346d369f5cca2edf"
+      },
+      {
+        "path": "default/data/ui/nav/default.xml",
+        "hash": "5e765698f7964b80f637f1cef472b464f2f1e45dfe3e499a93979e54c63af8d9"
+      },
+      {
+        "path": "default/data/ui/views/overview.xml",
+        "hash": "1c4bc9c8c8e279b1ab005414adc434b6404cd8b44b7bd797372bfbf123c7a96e"
+      },
+      {
+        "path": "default/data/ui/views/investigation.xml",
+        "hash": "09256415d33a15359ab33e67e0b9174ba671336507679253f17f50f5241aa99f"
+      },
+      {
+        "path": "default/data/ui/views/event_analysis.xml",
+        "hash": "492fc89b3b68719a283d4e41ea8761a619c76a8f580630ca8a86a0dad896d23f"
+      },
+      {
+        "path": "default/data/ui/views/setup_page_dashboard.xml",
+        "hash": "ca646d35525e508692eb7da8bc72812a9909aa82d92127450a0441a88dc02891"
+      },
+      {
+        "path": "default/sample events/AED_20180125110758.cef",
+        "hash": "e9e3520ffcf668a5416f4e5a133394cde1dfef97932d1191b370aa2cc34d396f"
+      },
+      {
+        "path": "default/sample events/AED_20180124182259.cef",
+        "hash": "4d7bd7bd5c9c31bfb8cc5d0d28ae02ec7ff31d4891c9d18bc0f1429bb291ba46"
+      },
+      {
+        "path": "default/sample events/AED_20180129111727.cef",
+        "hash": "1fe52d560f2544be9e32caafa0a628eed13bd6f08fef7ffd1cc01ad0d20bf6e0"
+      },
+      {
+        "path": "default/sample events/AED_20180124151254.cef",
+        "hash": "f18f03ecdde982dc434b32c5c164cc14803cea5022cc0eed6b901d201f4fb66a"
+      },
+      {
+        "path": "default/sample events/AED_20180125170307.cef",
+        "hash": "961ba40d7cf0bce26f9f8676e091bd928ab1e016068227b3d8cfba6723375c98"
+      },
+      {
+        "path": "default/sample events/AED_20180129112725.cef",
+        "hash": "29f5edee08098a8a7ea5117e999f4949efa7ad6924b7a20cd546bd51fa7265c1"
+      },
+      {
+        "path": "static/appLogo.png",
+        "hash": "adf002b6ed0cbdc9193a27d5bde9a46f58b2d3c56ad2a3dbd1eba48304115472"
+      },
+      {
+        "path": "static/appLogo_2x (1).png",
+        "hash": "beabd4ad1641854bdb3d828335f9f27a840c72f555d989ae4eafa05758eb311d"
+      },
+      {
+        "path": "static/my_logo.png",
+        "hash": "196ce5e5c9bbe9d716b77f6f2512d9a33b09fbb1651129302149b871684d802f"
+      },
+      {
+        "path": "static/old logo.png",
+        "hash": "b1671bb02ee4315aa2b5d3694cb606c83e17e21f6040545de2891c3b0d5e4994"
+      },
+      {
+        "path": "static/appIcon.png",
+        "hash": "f12389b771960b80d9521fa12c3a718c463cd7c3b877d4ed80131c285b3f2a15"
+      },
+      {
+        "path": "static/appLogo (1).png",
+        "hash": "adf002b6ed0cbdc9193a27d5bde9a46f58b2d3c56ad2a3dbd1eba48304115472"
+      },
+      {
+        "path": "static/appIcon_2x.png",
+        "hash": "8c24228009f1e66f302be97bd181c881b8212522d522af6c974aee611aa8ec5c"
+      },
+      {
+        "path": "static/appIconAlt.png",
+        "hash": "f12389b771960b80d9521fa12c3a718c463cd7c3b877d4ed80131c285b3f2a15"
+      },
+      {
+        "path": "static/appLogo_2x.png",
+        "hash": "beabd4ad1641854bdb3d828335f9f27a840c72f555d989ae4eafa05758eb311d"
+      },
+      {
+        "path": "static/appIconAlt_2x.png",
+        "hash": "8c24228009f1e66f302be97bd181c881b8212522d522af6c974aee611aa8ec5c"
+      },
+      {
+        "path": "static/images/picture.png",
+        "hash": "beabd4ad1641854bdb3d828335f9f27a840c72f555d989ae4eafa05758eb311d"
+      },
+      {
+        "path": "appserver/static/application.css",
+        "hash": "7b99c3f09a316e7438107d0d40b9043bb62687ad2d65d9dbfbbfa7abccf009c8"
+      },
+      {
+        "path": "appserver/static/decorations.css",
+        "hash": "64481e0d08bbef9fb35020182571ce9371412f4a0b1cd9b08a637fc584886f16"
+      },
+      {
+        "path": "appserver/static/table_decorations.css",
+        "hash": "c7a74c24a54b980a32814c4c0521b361cdaffb2728d9243eebab6e5355761387"
+      },
+      {
+        "path": "appserver/static/theme_utils.js",
+        "hash": "97fcc205d3458196eeb90377231dd2b29c3f843a4b2cedb29c06d300bc76b5b9"
+      },
+      {
+        "path": "appserver/static/tablepopup.js",
+        "hash": "d07fb2de2c906d5d8166266b46cb8a626b67dfb5f69f1968e8dc3dce93e54e6a"
+      },
+      {
+        "path": "appserver/static/admin.css",
+        "hash": "4ec77d2c337b1e03c5f9a99c25fb661d84ebd01ea514bb5412c8aaa508e4560d"
+      },
+      {
+        "path": "appserver/static/table_icons_rangemap.js",
+        "hash": "6e3fce0dd7161f32c0374b83423c21898156f823c3f8161131dd88521f1517d0"
+      },
+      {
+        "path": "appserver/static/default.css",
+        "hash": "e8e7604aa5ae535efffce3e395205dee6e7ebc51e8e0908243460040d772af3d"
+      },
+      {
+        "path": "appserver/static/tablehighlight.js",
+        "hash": "8369036df6cfe7d50c66bb8bc3251006918357c9ae15378c32dd8580eb3c4cdd"
+      },
+      {
+        "path": "appserver/static/images/picture.png",
+        "hash": "beabd4ad1641854bdb3d828335f9f27a840c72f555d989ae4eafa05758eb311d"
+      },
+      {
+        "path": "appserver/static/styles/setup_page.css",
+        "hash": "61b839e61823c8c6f79cd31a430da7507f7ca926b6f439cb2f3d7380d815c354"
+      },
+      {
+        "path": "appserver/static/components/ModalView.js",
+        "hash": "02aac06f9c957af57e77422211470c34c4503212fb58336995ca5ad443139efd"
+      },
+      {
+        "path": "appserver/static/javascript/setup_page.js",
+        "hash": "2e06020bccdbff0a5d1e20e8e4fd98a1f6b0a9b95ddc598bb15c60c7d483248b"
+      },
+      {
+        "path": "appserver/static/javascript/views/setup_page.js",
+        "hash": "9e07ac4cb03b9814ea94bbb6a461929fed0d40957dc0100ac396e27f50418c7a"
+      },
+      {
+        "path": "appserver/static/javascript/views/setup_configuration.js",
+        "hash": "dddbcc964b7c389c5039ca05d52da1db7d11f0327e626724be4e0f26483452ab"
+      },
+      {
+        "path": "appserver/static/javascript/views/splunk_helpers.js",
+        "hash": "52264d3de7f01883c0d338aae49ea9cdd3ec4b6c73bd0fc0d3ae3827ecf8cefe"
+      },
+      {
+        "path": "appserver/static/javascript/views/app.js",
+        "hash": "b4cb22ebd3b007e5f173b257290782b4fd146301e0d7aa17cfc4ceaa0be12cec"
+      },
+      {
+        "path": "appserver/static/javascript/vendor/react.production.min.js",
+        "hash": "c9486f126615859fc61ac84840a02b2efc920d287a71d99d708c74b2947750fe"
+      },
+      {
+        "path": "appserver/static/javascript/vendor/react-dom.production.min.js",
+        "hash": "bc5b7797e8a595e365c1385b0d47683d3a85f3533c58d499659b771c48ec6d25"
+      },
+      {
+        "path": "metadata/default.meta",
+        "hash": "202c9ea81c1d75884c7d9fd1a8cfdb5e9a7432d4c7d565df24b49340265bf181"
+      }
+    ]
+  },
+  "products": [
+    {
+      "platform": "splunk",
+      "product": "enterprise",
+      "versions": [
+        "8.0",
+        "8.1",
+        "8.2",
+        "9.0"
+      ],
+      "architectures": [
+        "x86_64"
+      ],
+      "operatingSystems": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "solaris",
+        "aix"
+      ]
+    },
+    {
+      "platform": "splunk",
+      "product": "cloud",
+      "versions": [
+        "8.0",
+        "8.1",
+        "8.2",
+        "9.0"
+      ],
+      "architectures": [
+        "x86_64"
+      ],
+      "operatingSystems": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "solaris",
+        "aix"
+      ]
+    }
+  ]
+}

@@ -6,7 +6,6 @@
         "__settings__.logging.loglevel",
         "__settings__.additional_parameters.username",
         "__settings__.additional_parameters.password",
-        "incident_dictionary_host",
         "rest_api_endpoint",
         "global_account.username",
         "global_account.password"
@@ -23,7 +22,7 @@
                 "pipeline": []
             },
             "request": {
-                "url": "{{rest_api_endpoint}}",
+                "url": "https://abex3.securitybridge.work/sap/opu/odata/ABEX/EVENTS_SRV/events?$filter=qFrom%20eq%20datetime%272022-11-25T16:07:00%27%20and%20qTo%20eq%20datetime%272022-11-25T17:57:00%27&$format=json",
                 "method": "GET",
                 "headers": {},
                 "auth": {
@@ -39,7 +38,7 @@
                     {
                         "input": [
                             "{{__response__.body}}",
-                            "$.d.results"
+                            "$"
                         ],
                         "method": "json_empty"
                     }
@@ -48,14 +47,6 @@
                     {
                         "input": [
                             "{{__response__.body}}",
-                            "$.d.results"
-                        ],
-                        "method": "json_path",
-                        "output": "__stdout__"
-                    },
-                    {
-                        "input": [
-                            "{{__stdout__}}",
                             "",
                             "{{index}}",
                             "{{host}}",
@@ -75,15 +66,7 @@
             },
             "iteration_mode": {
                 "iteration_count": "1",
-                "stop_conditions": [
-                    {
-                        "input": [
-                            "{{__response__.body}}",
-                            "$.d.results"
-                        ],
-                        "method": "json_empty"
-                    }
-                ]
+                "stop_conditions": []
             }
         }
     ]
