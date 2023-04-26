@@ -22,7 +22,7 @@
                 "pipeline": []
             },
             "request": {
-                "url": "https://abex3.securitybridge.work/sap/opu/odata/ABEX/EVENTS_SRV/events?$filter=qFrom%20eq%20datetime%272022-11-25T16:07:00%27%20and%20qTo%20eq%20datetime%272022-11-25T17:57:00%27&$format=json",
+                "url": "{{rest_api_endpoint}}",
                 "method": "GET",
                 "headers": {},
                 "auth": {
