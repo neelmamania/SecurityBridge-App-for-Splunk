@@ -38,7 +38,7 @@
                     {
                         "input": [
                             "{{__response__.body}}",
-                            "$"
+                            "$.d.results"
                         ],
                         "method": "json_empty"
                     }
@@ -47,6 +47,14 @@
                     {
                         "input": [
                             "{{__response__.body}}",
+                            "$.d.results"
+                        ],
+                        "method": "json_path",
+                        "output": "__stdout__"
+                    },
+                    {
+                        "input": [
+                            "{{__stdout__}}",
                             "",
                             "{{index}}",
                             "{{host}}",
@@ -66,7 +74,15 @@
             },
             "iteration_mode": {
                 "iteration_count": "1",
-                "stop_conditions": []
+                "stop_conditions": [
+                    {
+                        "input": [
+                            "{{__response__.body}}",
+                            "$.d.results"
+                        ],
+                        "method": "json_empty"
+                    }
+                ]
             }
         }
     ]
