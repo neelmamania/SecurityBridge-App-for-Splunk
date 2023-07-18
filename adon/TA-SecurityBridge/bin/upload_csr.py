@@ -7,7 +7,7 @@ from splunk.persistconn.application import PersistentServerConnectionApplication
 log_file_path = make_splunkhome_path(
     ['var', 'log', 'splunk', 'TA-SecurityBridge_certupload.log'])
 new_file_path = make_splunkhome_path(
-    ['etc', 'apps', 'TA-SecurityBridge', 'cert', 'ca.pem'])
+    ['etc', 'apps', 'TA-SecurityBridge', 'cert', 'cacert.pem'])
 
 
 def log(level, message):

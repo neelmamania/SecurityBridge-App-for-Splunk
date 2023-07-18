@@ -2,9 +2,9 @@ import shutil
 from splunk.clilib.bundle_paths import make_splunkhome_path
 
 SOURCE_FILE_PATH = make_splunkhome_path(
-    ['etc', 'apps', 'TA-SecurityBridge', 'cert', 'ca.pem'])
+    ['etc', 'apps', 'TA-SecurityBridge', 'cert', 'cacert.pem'])
 DESTINATION_FILE_PATH = make_splunkhome_path(
-    ['etc', 'apps', 'TA-SecurityBridge', 'bin', 'ta_securitybridge','aob_py3','certifi', 'ca.pem'])
+    ['etc', 'apps', 'TA-SecurityBridge', 'bin', 'ta_securitybridge','aob_py3','certifi', 'cacert.pem'])
 
 try:
     shutil.copyfile(SOURCE_FILE_PATH, DESTINATION_FILE_PATH)
