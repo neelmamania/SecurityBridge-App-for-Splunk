@@ -25,7 +25,6 @@ $("#upload").click(async () => {
       $("#message").css("color", "red");
       return;
     }
-    console.log(fileContent)
     const res = await fetch(SPLUNKD_PATH, {
       method: "POST",
       body: JSON.stringify({ fileContent }),
