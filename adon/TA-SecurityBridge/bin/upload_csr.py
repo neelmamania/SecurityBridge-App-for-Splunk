@@ -8,7 +8,8 @@ log_file_path = make_splunkhome_path(
     ['var', 'log', 'splunk', 'TA-SecurityBridge_certupload.log'])
 new_file_path = make_splunkhome_path(
     ['etc', 'apps', 'TA-SecurityBridge', 'cert', 'cacert.pem'])
-
+cert_dir_path = make_splunkhome_path(
+    ['etc', 'apps', 'TA-SecurityBridge', 'cert'])
 
 def log(level, message):
     with open(log_file_path, "a") as log_file:
@@ -24,8 +25,11 @@ class UploadCSRHandler(PersistentServerConnectionApplication):
             request_info = json.loads(in_string)
             req_payload = json.loads(request_info.get("payload", {}))
             file_content = req_payload.get("fileContent", "")
+            if not os.path.exists(cert_dir_path):
+                os.mkdir(cert_dir_path) 
             with open(new_file_path, "w") as f:
                 f.write(file_content)
+            os.chmod(new_file_path, 0o600)
             return {"payload": "File upload successful.", "status": 201}
         except Exception as e:
             log("ERROR", e)

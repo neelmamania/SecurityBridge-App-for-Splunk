@@ -1,7 +1,7 @@
 let fileContent;
 
 const SPLUNKD_PATH = Splunk.util.make_full_url(
-  "/splunkd/__raw/services/data/TA-SecurityBridge/upload_csr"
+  "/splunkd/__raw/services/data/TA-SecurityBridge/upload_csr/"
 );
 
 $("#import-csr-input").change((event) => {
@@ -25,7 +25,7 @@ $("#upload").click(async () => {
       $("#message").css("color", "red");
       return;
     }
-
+    console.log(fileContent)
     const res = await fetch(SPLUNKD_PATH, {
       method: "POST",
       body: JSON.stringify({ fileContent }),
