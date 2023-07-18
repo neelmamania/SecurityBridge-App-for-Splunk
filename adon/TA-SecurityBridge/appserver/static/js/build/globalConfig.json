@@ -2,7 +2,7 @@
     "meta": {
         "name": "TA-SecurityBridge",
         "displayName": "TA-SecurityBridge",
-        "version": "2.1.1",
+        "version": "2.1.3",
         "restRoot": "TA_SecurityBridge",
         "schemaVersion": "0.0.3"
     },
